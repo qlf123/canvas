@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title>canvas绘制直线和多边形</title>
+</head>
+<body>
+	<!--不建议放在style中指定宽高，这里还代表分辨率-->
+	<canvas id="canvas" width="1024" height="768" style="border: 1px solid #ddd; margin:20px auto;">
+		当前浏览器不支持canvas
+	</canvas>
+
+</body>
+<script>
+	window.onload = function(){
+		var canvas = document.getElementById('canvas')
+		var context = canvas.getContext('2d') // 绘图环境
+//		canvas.width = 1024
+//		canvas.height = 768
+//		var context;
+//		if (canvas.getContext('2d')) {
+//			context = canvas.getContext('2d')
+//		} else {
+//			alert('不支持')
+//		}s
+		// 使用context绘图
+		// TODO：绘制一条线、一个多边形
+		// 先状态设置：canvas绘图基于状态
+		context.beginPath()  // 分隔处理
+		context.moveTo(100, 100) // 起点
+		context.lineTo(700, 700) // 要去哪
+		context.lineTo(100, 700) // 要去哪
+		context.lineTo(100, 100) // 要去哪
+		context.lineWidth = 2 // 线宽
+		context.strokeStyle = '#005588' // 线的样式
+		context.fillStyle = 'rgba(0, 0, 0, 0.3)' // 多边形着色
+		context.closePath()
+		// 执行绘制
+		context.stroke() // 绘制线条
+		context.fill()  // 着色执行
+
+		// TODO: 绘制两条直线
+		context.beginPath()  // 分隔处理
+		context.moveTo(100, 200) // 起点
+		context.lineTo(700, 800) // 要去哪
+		context.lineWidth = 2 // 线宽
+		context.strokeStyle = 'red' // 线的样式
+		context.closePath()
+		context.stroke() // 绘制线条
+
+	}
+</script>
+</html>
