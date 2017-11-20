@@ -12,6 +12,17 @@
 		var canvas = document.getElementById('canvas');
 		var context = canvas.getContext('2d');
 		// context.arc 传6个参数：1.圆心横坐标centerx，2.圆心纵坐标centery，3.半径radius，4.起始弧度值startingAngle - 0、0.5、1、1.5、2，5.结束弧度值endingAngle, 6.是否为逆时针anticlockwise=false(false为顺时针)
+		context.beginPath()
+		context.lineWidth = 5
+		context.strokeStyle = '#005588'
+		context.fillStyle = '#005588'
+		// TODO: 绘制圆弧
+		context.arc(0, 100, 60, 0, 1.5)
+		context.closePath()  // 会自动封闭，结束当前路径, 不调用则不封闭
+
+		context.stroke()
+		context.fill()
+
 	}
 </script>
 </html>
