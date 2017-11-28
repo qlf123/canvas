@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title>canvas绘制接口</title>
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+</body>
+<script>
+	var canvas = daocument.getElementById('canvas')
+	var context = canvas.getContext('2d')
+	// TODO: 知识点
+	// 线条 状态->绘制 基于状态绘制，不是对象
+	context.moveTo(100, 100) // 起点
+	context.lineTo(700, 700) // 到哪
+	context.lineWidth = 10 // 宽 对context设置
+
+	context.stroke() // 绘制
+
+</script>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>canvas证书生成</title>
+	<style>
+		html, body {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+		}
+		canvas {
+			height: 100%;
+			overflow: hidden;
+		}
+		#convertedImg {
+			position: fixed;
+			top: 0;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+	<div id="convertedImg"></div>
+	<script>
+		let canvas = document.getElementById('canvas')
+		canvas.width = document.body.clientWidth
+		canvas.height = document.body.clientHeight
+//		canvas.height =  window.screen.availHeight
+//		canvas.height =  window.screen.height
+		let cxt = canvas.getContext('2d')
+//		cxt.beginPath()
+		let img = new Image()
+		img.src = "./img/bg.jpg"
+
+		let imgC = new Image()
+		imgC.src = "./img/1c.png"
+
+		cxt.fillStyle = '#333';
+		cxt.font = '14px Arial';
+		var tw = cxt.measureText('北京家园共育教育科技中心').width; // 检测文字的宽度
+
+		img.onload = function () {
+			console.log(1)
+			cxt.drawImage(img, 0, 10, cxt.canvas.width, cxt.canvas.height-20);
+			cxt.fillText('北京家园共育教育科技中心', (cxt.canvas.width - tw)/2, cxt.canvas.height/5);
+
+			cxt.font = '16px Arial';
+			var tw2 = cxt.measureText('【睿智情商】情商训练师初级资格证').width; // 检测文字的宽度
+			cxt.fillText('【睿智情商】情商训练师初级资格证', (cxt.canvas.width - tw2)/2, cxt.canvas.height/5 + 26);
+		}
+		imgC.onload = setTimeout(function () {
+			console.log(2)
+			cxt.drawImage(imgC, 50, cxt.canvas.height/5 + 60, 88, 118);
+			// 在页面生成图片
+			let imgI = convertCanvasToImage(canvas);
+			document.getElementById("convertedImg").append(imgI);
+			cxt.clearRect(0, 10, cxt.canvas.width, cxt.canvas.height-20) // 销毁canvas
+			document.getElementById("convertedImg").top = 0
+		}, 200)
+
+		function convertCanvasToImage(canvas){
+			console.log(3)
+			//新Image对象,可以理解为DOM;
+			var image = new Image();
+
+			//canvas.toDataURL返回的是一串Base64编码的URL,当然,浏览器自己肯定支持
+			//指定格式PNG
+			image.src = canvas.toDataURL("img/png");
+			return image;
+		}
+	</script>
+</body>
+</html>
